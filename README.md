@@ -38,10 +38,10 @@ The purpose of this project is to demonstrate both knowledge and practical skill
 ## ACHIVMENTS & IMPACT
 - Designed a virtual WAN/LAN topology using three Debian virtual machines: FV2 (firewall), WAN_FV2 (external host), and LAN_FV2 (internal client).
 - Configured VirtualBox network adapters to separate the external WAN network from the internal LAN.
-- Configured network connection profiles using NetworkManager ("nmcli").
-- Configured the firewall WAN interface to obtain IPv4 and IPv6 settings automatically.
-- Assigned static IPv4 and IPv6 addresses to the firewall's LAN interface and the internal client.
-- Verified IPv4 and IPv6 connectivity between the internal client and the firewall.
-- Enabled IPv4 and IPv6 packet forwarding using Linux 'sysctl' settings.
-- Configured persistent forwarding settings in '/etc/sysctl.d/99-firewall.conf'.
-- Verified that both IPv4 and IPv6 forwarding are enabled.
+- Configured network interfaces and connection profiles using NetworkManager (nmcli).
+- Configured automatic IPv4/IPv6 addressing on the WAN interface and static IPv4/IPv6 addressing on the LAN.
+- Enabled persistent IPv4 and IPv6 packet forwarding using sysctl.
+- Implemented a stateful nftables firewall with default-deny INPUT and FORWARD policies.
+- Configured IPv4 masquerading and IPv6 NAT66 for LAN-to-WAN connectivity.
+- Enabled persistent nftables firewall rules.
+- Verified IPv4 and IPv6 connectivity from the internal LAN through the firewall to the Internet.
