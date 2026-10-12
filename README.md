@@ -1,47 +1,42 @@
 # DEBIAN NETFILTER FIREWALL V2
 By Daniel Tobar
-- Github: https://github.com/venorant/Debian_Netfilter_FirewallV2
+- **Github:** https://github.com/venorant/Debian_Netfilter_FirewallV2
 
 ## OBJECTIVE
-The purpose of this project is to demonstrate both knowledge and practical skills regarding firewall design and rule implementation using the Linux Netfilter framework and nftables. The project focuses primarily on filtering traffic passing through the firewall as well as traffic directed at the firewall itself. The test lab uses several Debian virtual machines to simulate a LAN/WAN environment and evaluate the firewall's security policies. The project also aims to demonstrate proficiency in network segmentation, network troubleshooting, and Linux administration.
+Designed and implemented a stateful Linux firewall using Debian, Netfilter, and nftables in a virtual WAN/LAN environment. The project focuses on network segmentation, IPv4/IPv6 traffic filtering, access control, NAT, and security testing.
 
 ## TASKS & RESPONSABILITIES
-- Design and implement a secure WAN/LAN network architecture using multiple Debian virtual machines.
-- Configure and manage a Debian-based firewall using the Linux Netfilter framework and nftables.
-- Implement stateful IPv4 and IPv6 traffic filtering.
-- Configure firewall policies for INPUT, OUTPUT, and FORWARD traffic.
-- Configure IPv4 and IPv6 packet forwarding.
-- Implement IPv4 NAT using MASQUERADE for the private LAN.
-- Restrict administrative access to authorized network segments.
-- Implement event logging and traffic monitoring for security analysis.
-- Conduct network and security tests using tools such as Nmap and tcpdump.
-- Troubleshoot network connectivity issues and firewall rule behavior.
-- Document the configuration, testing process, and results using Git, GitHub, and Visual Studio Code.
+- Built a virtual network using three Debian machines: FV2 (firewall), WAN_FV2 (external host), and LAN_FV2 (internal client).
+- Configured WAN and LAN interfaces using VirtualBox and NetworkManager.
+- Enabled persistent IPv4 and IPv6 packet forwarding.
+- Implemented stateful nftables rules with default-deny INPUT and FORWARD policies.
+- Allowed established and related connections, dropped invalid traffic, and restricted SSH access to the LAN.
+- Configured IPv4 masquerading and IPv6 NAT66 for outbound LAN connectivity.
+- Tested firewall behavior using Nmap, SSH, ping, and tcpdump.
 
 ## SKILLS & TOOLS
-- Oracle VirtualBox
-- Debian Linux
-- Netfilter
-- Nftables
-- IPv4/IPv6
-- TCP/IP networks
-- Network segmentation
-- Routing
-- NAT
-- Stateful firewall configuration
-- Nmap
-- tcpdump
-- Git
-- GitHub
-- Visual Studio Code
+- **Operating Systems & Virtualization:** Debian Linux, Oracle VirtualBox
+- **Networking:** IPv4/IPv6, TCP/IP, routing, NAT, network segmentation, NetworkManager
+- **Security:** Netfilter, nftables, stateful packet filtering, firewall access control
+- **Testing:** Nmap, SSH, tcpdump, ping
+- **Version Control & Documentation:** Git, GitHub, Visual Studio Code
 
-## ACHIVMENTS & IMPACT
-- Designed a virtual WAN/LAN topology using three Debian virtual machines: FV2 (firewall), WAN_FV2 (external host), and LAN_FV2 (internal client).
-- Configured VirtualBox network adapters to separate the external WAN network from the internal LAN.
-- Configured network interfaces and connection profiles using NetworkManager (nmcli).
-- Configured automatic IPv4/IPv6 addressing on the WAN interface and static IPv4/IPv6 addressing on the LAN.
-- Enabled persistent IPv4 and IPv6 packet forwarding using sysctl.
-- Implemented a stateful nftables firewall with default-deny INPUT and FORWARD policies.
-- Configured IPv4 masquerading and IPv6 NAT66 for LAN-to-WAN connectivity.
-- Enabled persistent nftables firewall rules.
-- Verified IPv4 and IPv6 connectivity from the internal LAN through the firewall to the Internet.
+## TESTING & RESULTS
+The following tests were performed to evaluate firewall security policies and network connectivity.
+| Tests | Results | Evidence |
+|---|---|---|
+| Firewall rules | Verified active filtering and NAT rules | [Screenshot](screenshots/nftables-rules.png) |
+| WAN port scanning | Nmap reported filtered TCP ports over IPv4 and IPv6 | [Screenshot](screenshots/nmap-wan.png) |
+| WAN SSH access | IPv4 and IPv6 connection attempts timed out | [Screenshot](screenshots/ssh-wan-blocked.png) |
+| LAN SSH access | Successfully connected from the LAN | [Screenshot](screenshots/ssh-lan-allowed.png) |
+| LAN-to-firewall connectivity | Verified IPv4 and IPv6 communication | [Screenshot](screenshots/lan-firewall-connectivity.png) |
+| LAN-to-Internet connectivity | Verified outbound IPv4 and IPv6 connectivity | [Screenshot](screenshots/lan-internet-connectivity.png) |
+| LAN traffic monitoring | Captured traffic on the internal interface | [Screenshot](screenshots/tcpdump-lan.png) |
+| WAN traffic monitoring | Captured traffic on the external interface | [Screenshot](screenshots/tcpdump-wan.png) |
+
+## ACHIEVEMENTS & IMPACT
+- Implemented a dual-stack, stateful Linux firewall with default-deny security policies.
+- Restricted inbound SSH access while allowing authorized connections from the internal LAN.
+- Configured IPv4 masquerading and IPv6 NAT66 for outbound LAN connectivity.
+- Validated firewall behavior using port scanning, connectivity testing, and packet captures.
+- Developed practical experience in Linux firewall administration, network security, and troubleshooting.
